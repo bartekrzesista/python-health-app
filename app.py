@@ -31,14 +31,14 @@ def main():
 
 	with left:
 	    symptomps_radio = st.radio("Objawy", list(symptoms_d.keys()), format_func=lambda x : symptoms_d[x])
-	    comorbidities_radio = st.radio("Choroby wspolistniejace", list(comorbidities_d.keys()), format_func=lambda x : comorbidities_d[x])
+	    comorbidities_radio = st.radio("Choroby współistniejące", list(comorbidities_d.keys()), format_func=lambda x : comorbidities_d[x])
 	    medicines_radio = st.radio("Leki", list(medicines_d.keys()), format_func=lambda x : medicines_d[x])
 	    
 	with right:
 		age_slider = st.slider("Wiek", value=1, min_value=11, max_value=77)
 		height_slider = st.slider("Wzrost", min_value=160, max_value=200)
 
-	data = [[symptomps_radio, comorbidities_radio, medicines_radio, age_slider, height_slider]]
+	data = [[symptomps_radio, age_slider, comorbidities_radio, height_slider, medicines_radio]]
 	survival = model.predict(data)
 	s_confidence = model.predict_proba(data)
 
